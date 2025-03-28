@@ -115,3 +115,22 @@ In some rare cases it may help to clear the files added to `~/.mcp-auth`
 ```bash
 rm -rf ~/.mcp-auth
 ```
+
+## Using the xkcd Tool
+
+The `xkcd` tool fetches a random xkcd comic image URL along with its alt text. Here's how you can use it:
+
+1. Connect to your MCP server using the MCP Inspector or Claude Desktop as described above.
+2. Call the `xkcd` tool.
+
+Example using the MCP Inspector:
+
+- In the MCP Inspector, select the `xkcd` tool from the list of available tools.
+- Click "Invoke" to fetch a random xkcd comic.
+
+Example using Claude Desktop:
+
+- Open Claude Desktop and ensure it is connected to your MCP server.
+- Use a prompt like "Fetch a random xkcd comic using the xkcd tool."
+
+The response will include the image URL and the alt text of the random xkcd comic.
