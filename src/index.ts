@@ -15,7 +15,7 @@ export class MyMCP extends McpAgent {
             content: [{ type: "text", text: String(a + b) }],
         }));
 
-        this.server.tool("xkcd", {}, async () => {
+        this.server.tool("xkcd", z.object({ type: z.literal("image"), url: z.string(), alt: z.string() }), async () => {
             const response = await fetch("https://xkcd.com/info.0.json");
             const data = await response.json();
             return {
