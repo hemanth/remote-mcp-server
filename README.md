@@ -83,6 +83,44 @@ Then enter the `workers.dev` URL (ex: `worker-name.account-name.workers.dev/sse`
 
 You've now connected to your MCP server from a remote MCP client.
 
+## Using the Standalone MCP Client Example
+
+This project includes a standalone MCP client example that demonstrates how to connect to the MCP server programmatically and call its tools. This is useful for testing, integration, or building custom applications that interact with the MCP server.
+
+The client code is located in `src/client/mcp-client.ts`, and an example script to run it is `src/run-client.ts`.
+
+### Prerequisites
+
+1.  **Server Running**: Ensure the MCP server is running, either locally (`npm run dev` or `npx nx dev remote-mcp-server`) or deployed.
+2.  **Client Credentials**: The client uses OAuth 2.0 client credentials to authenticate.
+    *   For local development, the example client (`src/run-client.ts`) is pre-configured with test credentials (`test-client` / `test-secret`). These credentials are expected by the default OAuth provider setup if no specific client registration is implemented on the server-side.
+    *   If you have a specific client registration system on your OAuth server, you'll need to register the client and obtain a client ID and secret.
+
+### Running the Client Example
+
+1.  **Set Environment Variables (Optional)**:
+    The client script `src/run-client.ts` can be configured via environment variables:
+    *   `MCP_SERVER_URL`: The base URL of the MCP server (e.g., `http://localhost:8787` or your deployed worker URL). Defaults to `http://localhost:8787`.
+    *   `MCP_CLIENT_ID`: The OAuth client ID. Defaults to `test-client`.
+    *   `MCP_CLIENT_SECRET`: The OAuth client secret. Defaults to `test-secret`.
+
+    You can set these in your shell:
+    ```bash
+    export MCP_SERVER_URL="http://your-server-url"
+    export MCP_CLIENT_ID="your-client-id"
+    export MCP_CLIENT_SECRET="your-client-secret"
+    ```
+
+2.  **Execute the script**:
+    Run the following command from the project root:
+    ```bash
+    npm run run:client
+    ```
+
+    This will execute `src/run-client.ts` using `ts-node`. The script will attempt to connect to the server, authenticate, and call the example `add` tool.
+
+    **Note**: The initial version of the client has placeholder implementations for the actual SDK client instantiation (`new McpClient(...)`) and tool invocation (`client.callTool(...)`) within `src/client/mcp-client.ts`. You may need to update these parts based on the specific APIs provided by the `@modelcontextprotocol/sdk` once they are fully determined, for the tool calls to succeed. The authentication part (`getAccessToken`) should work if the server's OAuth `/token` endpoint is operational.
+
 ## Connect Claude Desktop to your remote MCP server
 
 Update the Claude configuration file to point to your `workers.dev` URL (ex: `worker-name.account-name.workers.dev/sse`) and restart Claude 
