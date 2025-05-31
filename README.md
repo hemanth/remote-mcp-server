@@ -6,14 +6,14 @@ Let's get a remote MCP server up-and-running on Cloudflare Workers complete with
 
 ```bash
 # clone the repository
-git clone git@github.com:cloudflare/ai.git
+git clone git@github.com:hemanth/remote-mcp-server.git
 
 # install dependencies
-cd ai
+cd remote-mcp-server
 npm install
 
 # run locally
-npx nx dev remote-mcp-server
+npm run dev
 ```
 
 You should be able to open [`http://localhost:8787/`](http://localhost:8787/) in your browser
@@ -22,7 +22,7 @@ You should be able to open [`http://localhost:8787/`](http://localhost:8787/) in
 
 To explore your new MCP api, you can use the [MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector).
 
-- Start it with `npx @modelcontextprotocol/inspector`
+- Start it with `npx @modelcontextprotocol/inspector@latest`
 - [Within the inspector](http://localhost:5173), switch the Transport Type to `SSE` and enter `http://localhost:8787/sse` as the URL of the MCP server to connect to, and click "Connect"
 - You will navigate to a (mock) user/password login screen. Input any email and pass to login.
 - You should be redirected back to the MCP Inspector and you can now list and call any defined tools!
@@ -69,7 +69,7 @@ When you open Claude a browser window should open and allow you to login. You sh
 
 ## Deploy to Cloudflare
 
-1. `npx wrangler kv namespace create OAUTH_KV`
+1. `npx wrangler@latest kv namespace create remote-mcp-server-oauth-kv`
 2. Follow the guidance to add the kv namespace ID to `wrangler.jsonc`
 3. `npm run deploy`
 
@@ -145,7 +145,7 @@ Should anything go wrong it can be helpful to restart Claude, or to try connecti
 MCP server on the command line with the following command.
 
 ```bash
-npx mcp-remote http://localhost:8787/sse
+npx mcp-remote@latest http://localhost:8787/sse
 ```
 
 In some rare cases it may help to clear the files added to `~/.mcp-auth`
