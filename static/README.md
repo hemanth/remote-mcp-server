@@ -22,7 +22,7 @@ You should be able to open [`http://localhost:8787/`](http://localhost:8787/) in
 
 To explore your new MCP api, you can use the [MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector).
 
-- Start it with `npx @modelcontextprotocol/inspector`
+- Start it with `npx @modelcontextprotocol/inspector@latest`
 - [Within the inspector](http://localhost:5173), switch the Transport Type to `SSE` and enter `http://localhost:8787/sse` as the URL of the MCP server to connect to, and click "Connect"
 - You will navigate to a (mock) user/password login screen. Input any email and pass to login.
 - You should be redirected back to the MCP Inspector and you can now list and call any defined tools!
@@ -107,7 +107,7 @@ Should anything go wrong it can be helpful to restart Claude, or to try connecti
 MCP server on the command line with the following command.
 
 ```bash
-npx mcp-remote http://localhost:8787/sse
+npx mcp-remote@latest http://localhost:8787/sse
 ```
 
 In some rare cases it may help to clear the files added to `~/.mcp-auth`
@@ -115,3 +115,22 @@ In some rare cases it may help to clear the files added to `~/.mcp-auth`
 ```bash
 rm -rf ~/.mcp-auth
 ```
+
+## Using the xkcd Tool
+
+The `xkcd` tool fetches a random xkcd comic image URL along with its alt text. Here's how you can use it:
+
+1. Connect to your MCP server using the MCP Inspector or Claude Desktop as described above.
+2. Call the `xkcd` tool.
+
+Example using the MCP Inspector:
+
+- In the MCP Inspector, select the `xkcd` tool from the list of available tools.
+- Click "Invoke" to fetch a random xkcd comic.
+
+Example using Claude Desktop:
+
+- Open Claude Desktop and ensure it is connected to your MCP server.
+- Use a prompt like "Fetch a random xkcd comic using the xkcd tool."
+
+The response will include the image URL and the alt text of the random xkcd comic.
