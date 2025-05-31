@@ -6,14 +6,14 @@ Let's get a remote MCP server up-and-running on Cloudflare Workers complete with
 
 ```bash
 # clone the repository
-git clone git@github.com:cloudflare/ai.git
+git clone git@github.com:hemanth/remote-mcp-server.git
 
 # install dependencies
-cd ai
+cd remote-mcp-server
 npm install
 
 # run locally
-npx nx dev remote-mcp-server
+npm run dev
 ```
 
 You should be able to open [`http://localhost:8787/`](http://localhost:8787/) in your browser
